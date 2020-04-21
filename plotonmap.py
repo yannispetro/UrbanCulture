@@ -11,8 +11,8 @@ from bokeh.models import ColumnDataSource, GMapOptions, Ellipse, HoverTool, Patc
 from bokeh.plotting import gmap, figure, show
 from bokeh.palettes import Turbo256 as palette
 
-output_file("gmap.html")
-output_notebook(INLINE)
+# output_file("gmap.html")
+# output_notebook(INLINE)
 
 colorList = np.array(palette)
 
@@ -40,10 +40,14 @@ def plot_clusters(dfc, dfn, title='Clusters', streets=False, colorScores=False, 
                                   map_type="roadmap", zoom=zm )
 
         api_key = os.environ['GOOGLE_API_KEY']
-        p = gmap(api_key, map_options, title=title)
+        p = gmap(api_key, map_options, title=title, sizing_mode="scale_both")
         p.add_tools( HoverTool(tooltips=TOOLTIPS) )
     else:
-        p = figure(title=title, background_fill_color = '#FFFFFF', tooltips=TOOLTIPS, tools='hover,wheel_zoom')
+        p = figure(title=title,
+                   background_fill_color = '#FFFFFF',
+                   tooltips=TOOLTIPS,
+                   tools='hover,wheel_zoom',
+                   sizing_mode="scale_both")
 
 
     colorIds = list(np.round(np.linspace(0, len(colorList) - 1, max(dfc.index)+1)).astype(int))
@@ -59,13 +63,9 @@ def plot_clusters(dfc, dfn, title='Clusters', streets=False, colorScores=False, 
             color   = colorList[colorIds][i]
             fill_alpha = 0.4
 
-        # if not np.any(Y_ == i):
-        #     continue
-
         score,nlist,cprice,n1data,n2data,n3data = ['-'],['-'],['-'],['-'],['-'],['-']
-        # if isinstance(dfn, type(None)):
-        #     p.circle(X[Y_ == i, 0], X[Y_ == i, 1], size=5, color=color, alpha = 0.4)
-        # else:
+        # centers = np.array(list(dfc['mean']))
+        # p.circle(centers[:, 0], centers[:, 1], size=2, color=color, alpha = 0.2)
         dmp = dfn[dfn['cluster']==i]
         dmc = dfc[dfc['cluster']==i]
         if len(dmp) > 0:
@@ -82,9 +82,16 @@ def plot_clusters(dfc, dfn, title='Clusters', streets=False, colorScores=False, 
         srcP = ColumnDataSource( dict(x=list(verts_x),y=list(verts_y)) )
         p.patch(x='x',y='y', fill_color=color, fill_alpha=fill_alpha, line_color=None, source=srcP)
 
-        srcC = ColumnDataSource( dict(x=[(max(verts_x)+min(verts_x))/2], y=[(max(verts_y)+min(verts_y))/2],
-                                      score=score,nlist=nlist, cprice=cprice, n1data=n1data, n2data=n2data, n3data=n3data))
+        srcC = ColumnDataSource( dict(x=[(max(verts_x)+min(verts_x))/2],
+                                      y=[(max(verts_y)+min(verts_y))/2],
+                                      score=score,nlist=nlist, cprice=cprice,
+                                      n1data=n1data, n2data=n2data, n3data=n3data)
+                                )
         cr = max( max(verts_x)-min(verts_x),max(verts_y)-min(verts_y) )
-        p.circle(x='x',y='y', radius = cr*50000, fill_color=hoverCirclesColor,fill_alpha=0.5,line_color=None, source=srcC)
+        p.circle(x='x', y='y', radius = cr*50000,
+                 fill_color=hoverCirclesColor,
+                 fill_alpha=0.5,line_color=None, source=srcC
+                 )
 
-    show(p)
+    # show(p)
+    return p

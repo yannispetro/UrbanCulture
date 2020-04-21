@@ -23,6 +23,6 @@ def keywords_score(kws, dfc, city):
     dfc['kws_score'] = dfc['kws_score_airbnb'] + dfc['kws_score_reviews']
     dfc['kws_score'] = dfc['kws_score']/dfc['kws_score'].max()
 
-    dfc['alpha'] = 0.01 + (dfc['kws_score'] - dfc['kws_score'].min())/(dfc['kws_score'].max() - dfc['kws_score'].min())*0.59
+    dfc['alpha'] = 0.1 + (dfc['kws_score'] - dfc['kws_score'].min())/(dfc['kws_score'].max() - dfc['kws_score'].min())*0.5
 
     return dfc
