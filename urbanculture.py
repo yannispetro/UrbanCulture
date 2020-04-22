@@ -18,7 +18,7 @@ app = Flask(__name__)
 Bootstrap(app)
 app.config['SECRET_KEY'] = 'PleaseDontTell'
 
-df_url = pd.read_csv('files/allCitiesData.csv.gz', compression='gzip')
+df_url = pd.read_csv('data/allCitiesData.csv.gz', compression='gzip')
 allCities = list(df_url.city)
 [allCities.remove(el) for el in ['ireland','san-mateo-county','zurich']];
 allCities = ['Select a city'] + allCities

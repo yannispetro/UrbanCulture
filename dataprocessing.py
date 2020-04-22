@@ -22,8 +22,8 @@ tfidf_airbnb = TfidfVectorizer(max_features=10000)
 sum_text = lambda x: '%s' % ' '.join(x)
 
 def load_data(city):
-    dfal = pd.read_csv('files/' + city + '_listings.csv.gz', compression='gzip')
-    dfrev = pd.read_csv('files/' + city + '_reviews.csv.gz', compression='gzip')
+    dfal = pd.read_csv('data/' + city + '_listings.csv.gz', compression='gzip')
+    dfrev = pd.read_csv('data/' + city + '_reviews.csv.gz', compression='gzip')
     dfrev = dfrev.loc[dfrev.comments.apply(type) == str]
     dfrev = dfrev.groupby('listing_id')['comments'].apply(sum_text).to_frame(name='text_reviews')
     dfal = dfal.merge(dfrev, how = 'left', left_on='id', right_on='listing_id')
