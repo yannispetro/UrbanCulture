@@ -19,14 +19,15 @@ Bootstrap(app)
 app.config['SECRET_KEY'] = 'PleaseDontTell'
 
 df_url = pd.read_csv('data/allCitiesData.csv.gz', compression='gzip')
-allCities = list(df_url.city)
-[allCities.remove(el) for el in ['ireland','san-mateo-county','zurich']];
-allCities = ['Select a city'] + allCities
-cities = list(zip(allCities,allCities))
+cities_alias = list(df_url.city)
+cities_names = list(df_url.city_clean)
+cities_alias = ['Select a city'] + cities_alias
+cities_names = ['Select a city'] + cities_names
+cities = list(zip(cities_alias,cities_names))
 
 class CityForm(Form):
     city_form     = SelectField('City',
-                           validators=[AnyOf(allCities[1:])],
+                           validators=[AnyOf(cities_alias[1:])],
                            coerce=str,
                            choices=cities,
                            )

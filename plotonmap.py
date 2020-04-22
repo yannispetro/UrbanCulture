@@ -17,7 +17,7 @@ from bokeh.palettes import Turbo256 as palette
 colorList = np.array(palette)
 
 
-def plot_clusters(dfc, dfn, title='Clusters', streets=False, colorScores=False, hoverCirclesColor=None):
+def plot_clusters(dfc, dfn, streets=False, colorScores=False, hoverCirclesColor=None):
     if 'kws_score' not in dfc:
         dfc['kws_score'] = '-'
         dfc['alpha'] = 0.4
@@ -40,11 +40,10 @@ def plot_clusters(dfc, dfn, title='Clusters', streets=False, colorScores=False, 
                                   map_type="roadmap", zoom=zm )
 
         api_key = os.environ['GOOGLE_API_KEY']
-        p = gmap(api_key, map_options, title=title, sizing_mode="scale_both")
+        p = gmap(api_key, map_options, sizing_mode="scale_both")
         p.add_tools( HoverTool(tooltips=TOOLTIPS) )
     else:
-        p = figure(title=title,
-                   background_fill_color = '#FFFFFF',
+        p = figure(background_fill_color = '#FFFFFF',
                    tooltips=TOOLTIPS,
                    tools='hover,wheel_zoom',
                    sizing_mode="scale_both")
@@ -57,7 +56,7 @@ def plot_clusters(dfc, dfn, title='Clusters', streets=False, colorScores=False, 
         verts_x = dfc.loc[i,'verts_x']
         verts_y = dfc.loc[i,'verts_y']
         if colorScores:
-            color = 'blue'
+            color = "#0275d8"
             fill_alpha = dfc.loc[i,'alpha']
         else:
             color   = colorList[colorIds][i]
@@ -92,6 +91,7 @@ def plot_clusters(dfc, dfn, title='Clusters', streets=False, colorScores=False, 
                  fill_color=hoverCirclesColor,
                  fill_alpha=0.5,line_color=None, source=srcC
                  )
+        p.axis.visible = False
 
     # show(p)
     return p
