@@ -1,13 +1,24 @@
+import pandas as pd
+
 from joblib import load
 from nltk.stem import PorterStemmer
 
 from sklearn.metrics.pairwise import cosine_similarity
 
+import urbanculture.plotonmap as pltmap
+
 ps = PorterStemmer()
 
+def get_plot_handle(city,kws):
+    dfc = pd.read_pickle('urbanculture/models/' + city + '_dfc.pkl.gz', compression='gzip')
+    dfn = pd.read_pickle('urbanculture/models/' + city + '_dfn.pkl.gz', compression='gzip')
+    dfc = keywords_score(kws, dfc, city)
+    p = pltmap.plot_clusters(dfc, dfn, streets=True, colorScores = True)
+    return p
+
 def keywords_score(kws, dfc, city):
-    tfidf_airbnb  = load('models/' +  city + '_tfidf_airbnb.joblib')
-    tfidf_reviews = load('models/' +  city + '_tfidf_reviews.joblib')
+    tfidf_airbnb  = load('urbanculture/models/' +  city + '_tfidf_airbnb.joblib')
+    tfidf_reviews = load('urbanculture/models/' +  city + '_tfidf_reviews.joblib')
     kws = ' '.join(list(set([ps.stem(kw) for kw in kws])))
 
     kws_vec_airbnb = tfidf_airbnb.transform([kws])

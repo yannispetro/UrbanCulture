@@ -8,6 +8,15 @@ verify_ssl = true
 [packages]
 flask-sqlalchemy = "*"
 python-dotenv = "*"
+flask = "*"
+pandas = "*"
+wtforms = "*"
+flask-bootstrap = "*"
+flask-wtf = "*"
+joblib = "*"
+nltk = "*"
+sklearn = "*"
+bokeh = "*"
 
 [requires]
 python_version = "3.8"
