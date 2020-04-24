@@ -17,6 +17,7 @@ joblib = "*"
 nltk = "*"
 sklearn = "*"
 bokeh = "*"
+gunicorn = "*"
 
 [requires]
 python_version = "3.8"
