@@ -13,7 +13,7 @@ def get_plot_handle(city,kws):
     dfc = pd.read_pickle('urbanculture/models/' + city + '_dfc.pkl.gz', compression='gzip')
     dfn = pd.read_pickle('urbanculture/models/' + city + '_dfn.pkl.gz', compression='gzip')
     dfc = keywords_score(kws, dfc, city)
-    p = pltmap.plot_clusters(dfc, dfn, streets=False, colorScores = False)
+    p = pltmap.plot_clusters(dfc, dfn, streets=True, colorScores=True)
     return p
 
 def keywords_score(kws, dfc, city):
