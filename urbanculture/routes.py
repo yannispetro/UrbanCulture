@@ -19,7 +19,7 @@ exclude = ['antwerp','asheville','barossa-valley','barwon-south-west-vic',
            'new-brunswick','northern-rivers','ottawa','pacific-grove','portland',
            'rhode-island','salem-or','tasmania','trentino','twin-cities-msa','vaud']
 
-df_url = pd.read_csv('models/allCitiesData.csv.gz', compression='gzip')
+df_url = pd.read_csv('urbanculture/models/allCitiesData.csv.gz', compression='gzip')
 df_url = df_url[~df_url.city.isin(exclude)]
 cities_alias = list(df_url.city)
 cities_names = list(df_url.city_clean)
