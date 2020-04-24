@@ -18,6 +18,7 @@ nltk = "*"
 sklearn = "*"
 bokeh = "*"
 gunicorn = "*"
+psycopg2 = "*"
 
 [requires]
 python_version = "3.8"
