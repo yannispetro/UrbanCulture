@@ -1,53 +1,26 @@
-import pandas as pd
-
-from flask import Flask, render_template
-from flask_wtf import Form
-from wtforms import StringField, SelectField
-from wtforms.validators import InputRequired, Email, Length, AnyOf
+from flask import Flask
 from flask_bootstrap import Bootstrap
 
-from joblib import load
-from nltk.stem import PorterStemmer
-from sklearn.metrics.pairwise import cosine_similarity
-from bokeh.embed import components
+from .commands import create_tables
+from .extensions import db
+from .routes import main
 
-import urbanculture.recommendations as recom
+def create_app(config_file='settings.py'):
+    app = Flask(__name__)
 
-app = Flask(__name__)
-Bootstrap(app)
-app.config['SECRET_KEY'] = 'PleaseDontTell'
+    app.config.from_pyfile(config_file)
 
-df_url = pd.read_csv('data/allCitiesData.csv.gz', compression='gzip')
-cities_alias = list(df_url.city)
-cities_names = list(df_url.city_clean)
-cities_alias = ['Select a city'] + cities_alias
-cities_names = ['Select a city'] + cities_names
-cities = list(zip(cities_alias,cities_names))
+    Bootstrap(app)
 
-class CityForm(Form):
-    city_form     = SelectField('City',
-                           validators=[AnyOf(cities_alias[1:])],
-                           coerce=str,
-                           choices=cities,
-                           )
-    keywords_form = StringField(
-                           'Keywords',
-                           validators=[InputRequired()],
-                           render_kw={"placeholder": "Type a few keywords ..."}
-                           )
+    db.init_app(app)
 
-@app.route('/', methods= ['GET', 'POST'])
-def index():
-    form = CityForm()
-    if form.validate_on_submit():
-        city = form.city_form.data
-        kws = form.keywords_form.data.replace(',','').split()
+    app.register_blueprint(main)
 
-        p = recom.get_plot_handle(city,kws)
+    app.cli.add_command(create_tables)
 
-        script, div = components(p)
-        return render_template("graph.html", script=script, div=div)
-    return render_template('index.html', form=form)
+    return app
+
+app = create_app()
 
 if __name__ == '__main__':
     app.run(debug=True)
