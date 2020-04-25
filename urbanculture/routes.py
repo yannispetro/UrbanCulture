@@ -44,13 +44,16 @@ def index():
     form = CityForm()
     if form.validate_on_submit():
         date = time.strftime('%Y-%m-%d %H:%M:%S')
-        ip_address = request.environ.get('HTTP_X_REAL_IP', request.remote_addr)
+        if request.environ.get('HTTP_X_FORWARDED_FOR', request.remote_addr) is None:
+            ip_address = request.environ.get('HTTP_X_REAL_IP', request.remote_addr)
+        else:
+            ip_address = request.environ.get('HTTP_X_FORWARDED_FOR', request.remote_addr)
         city = form.city_form.data
         keywords = form.keywords_form.data
 
-        searchquery = SearchQuery(date=date, ip_address=ip_address, city=city, keywords=keywords)
-        db.session.add(searchquery)
-        db.session.commit()
+        # searchquery = SearchQuery(date=date, ip_address=ip_address, city=city, keywords=keywords)
+        # db.session.add(searchquery)
+        # db.session.commit()
 
         p = recom.get_plot_handle(city, keywords.replace(',','').split() )
 
