@@ -9,3 +9,5 @@ wiki-news-300d-1M.vec.zip
 venv
 
 data
+
+db.sqlite3
