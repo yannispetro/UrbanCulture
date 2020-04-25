@@ -51,9 +51,9 @@ def index():
         city = form.city_form.data
         keywords = form.keywords_form.data
 
-        # searchquery = SearchQuery(date=date, ip_address=ip_address, city=city, keywords=keywords)
-        # db.session.add(searchquery)
-        # db.session.commit()
+        searchquery = SearchQuery(date=date, ip_address=ip_address, city=city, keywords=keywords)
+        db.session.add(searchquery)
+        db.session.commit()
 
         p = recom.get_plot_handle(city, keywords.replace(',','').split() )
 
