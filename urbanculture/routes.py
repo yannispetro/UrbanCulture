@@ -12,15 +12,19 @@ main = Blueprint('main', __name__)
 def index():
     form = CityForm()
     if form.validate_on_submit():
-
-        date,ip_address,ip_city,ip_region,ip_country,city,keywords = get_query_info(form)
-
-        print(get_query_info(form))
-
-        searchquery = SearchQuery(date=date, ip_address=ip_address, city=city, keywords=keywords)
+        query_info_dict = get_query_info(form)
+        searchquery = SearchQuery(date=query_info_dict['date'],
+                                  ip_address=query_info_dict['ip_address'],
+                                  ip_city=query_info_dict['ip_city'],
+                                  ip_region=query_info_dict['ip_region'],
+                                  ip_country=query_info_dict['ip_country'],
+                                  city=query_info_dict['city'],
+                                  keywords=query_info_dict['keywords'])
         db.session.add(searchquery)
         db.session.commit()
 
+        city = query_info_dict['city']
+        keywords = query_info_dict['keywords']
         p = recom.get_plot_handle(city, keywords.replace(',','').split() )
 
         script, div = components(p)

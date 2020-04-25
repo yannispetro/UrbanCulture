@@ -33,14 +33,13 @@ class CityForm(Form):
                            )
 
 def get_query_info(form):
-    city = form.city_form.data
-    keywords = form.keywords_form.data
+    query_info_dict = {'city': form.city_form.data,
+                       'keywords': form.keywords_form.data,
+                       'date': time.strftime('%Y-%m-%d %H:%M:%S')}
 
-    date = time.strftime('%Y-%m-%d %H:%M:%S')
+    query_info_dict.update(get_ip_info())
 
-    ip_address, ip_city, ip_region, ip_country = get_ip_info()
-
-    return date, ip_address, ip_city, ip_region, ip_country, city, keywords
+    return query_info_dict
 
 
 def get_ip_info():
@@ -65,4 +64,9 @@ def get_ip_info():
     else:
         ip_country = '-'
 
-    return ip_address, ip_city,ip_region,ip_country
+    ip_info_dict = {'ip_address': ip_address,
+                    'ip_city': ip_city,
+                    'ip_region': ip_region,
+                    'ip_country': ip_country}
+
+    return ip_info_dict
