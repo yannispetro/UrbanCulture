@@ -23,7 +23,7 @@ def index():
         db.session.add(searchquery)
         db.session.commit()
 
-        city = query_info_dict['city']
+        city     = query_info_dict['city']
         keywords = query_info_dict['keywords']
         p = recom.get_plot_handle(city, keywords.replace(',','').split() )
 
