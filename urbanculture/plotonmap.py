@@ -79,7 +79,6 @@ def plot_clusters(dfc, dfn, streets=False, colorScores=False, hoverCirclesColor=
                 n3data = [str(dmp.iloc[2,2])+' '+str(dmp.iloc[2,1])+' ('+str(dmp.iloc[2,5])+')']
 
         srcP = ColumnDataSource( dict(x=list(verts_x),y=list(verts_y)) )
-        print(123456789,fill_alpha)
         p.patch(x='x',y='y', fill_color=color, fill_alpha=fill_alpha, line_color=None, source=srcP)
 
         srcC = ColumnDataSource( dict(x=[(max(verts_x)+min(verts_x))/2],

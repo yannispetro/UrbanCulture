@@ -6,6 +6,8 @@ from flask_wtf import Form
 from wtforms import StringField, SelectField
 from wtforms.validators import InputRequired, AnyOf
 from bokeh.embed import components
+from ipwhois import IPWhois
+from ipwhois.exceptions import IPDefinedError
 
 from .extensions import db
 from .models import SearchQuery
@@ -50,6 +52,10 @@ def index():
             ip_address = request.environ.get('HTTP_X_FORWARDED_FOR', request.remote_addr)
         city = form.city_form.data
         keywords = form.keywords_form.data
+        try:
+            print(IPWhois(ip_address))
+        except IPDefinedError:
+            print('-')
 
         searchquery = SearchQuery(date=date, ip_address=ip_address, city=city, keywords=keywords)
         db.session.add(searchquery)
