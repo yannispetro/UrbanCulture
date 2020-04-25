@@ -19,7 +19,7 @@ sklearn = "*"
 bokeh = "*"
 gunicorn = "*"
 psycopg2 = "*"
-ipwhois = "*"
+ipinfo = "*"
 
 [requires]
 python_version = "3.8"
