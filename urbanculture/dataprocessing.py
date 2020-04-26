@@ -57,6 +57,7 @@ def stemming(dfal):
 def fit_tfidfs(dfal, city):
     dfal2 = dfal.dropna(subset=['stemmed_neighborhood_overview'], how='any').copy()
     dfal2['stemmed_reviews'].fillna(' ', inplace = True)
+
     tfidf_airbnb = TfidfVectorizer(max_features=10000)
     tfidf_airbnb.fit(list(dfal2.stemmed_neighborhood_overview))
 
