@@ -22,8 +22,8 @@ tfidf_airbnb = TfidfVectorizer(max_features=10000)
 sum_text = lambda x: '%s' % ' '.join(x)
 
 def load_data(city):
-    dfal = pd.read_csv('data/' + city + '_listings.csv.gz', compression='gzip')
-    dfrev = pd.read_csv('data/' + city + '_reviews.csv.gz', compression='gzip')
+    dfal = pd.read_csv(f'data/{city}_listings.csv.gz', compression='gzip')
+    dfrev = pd.read_csv(f'data/{city}_reviews.csv.gz', compression='gzip')
     dfrev = dfrev.loc[dfrev.comments.apply(type) == str]
     dfrev = dfrev.groupby('listing_id')['comments'].apply(sum_text).to_frame(name='text_reviews')
     dfal = dfal.merge(dfrev, how = 'left', left_on='id', right_on='listing_id')
@@ -64,14 +64,14 @@ def fit_tfidfs(dfal, city):
     tfidf_reviews = TfidfVectorizer(max_features=10000)
     tfidf_reviews.fit(list(dfal2.stemmed_reviews))
 
-    dump(tfidf_airbnb,  'models/' +  city + '_tfidf_airbnb.joblib', compress=9)
-    dump(tfidf_reviews, 'models/' +  city + '_tfidf_reviews.joblib', compress=9)
+    dump(tfidf_airbnb,  f'models/{city}_tfidf_airbnb.joblib', compress=9)
+    dump(tfidf_reviews, f'models/{city}_tfidf_reviews.joblib', compress=9)
 
     return dfal2
 
 def extractMostRelevant(dfal2, city, rbc = ['restaurant','bar','coffee'], percent=0.15):
     rbc = ' '.join(list(set([ps.stem(kw) for kw in rbc])))
-    tfidf_airbnb = load('models/' +  city + '_tfidf_airbnb.joblib')
+    tfidf_airbnb = load(f'models/{city}_tfidf_airbnb.joblib')
     rbc_vec_airbnb = tfidf_airbnb.transform([rbc])
 
     # print('calculating rbc scores -->')
