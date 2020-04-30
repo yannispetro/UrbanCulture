@@ -5,7 +5,9 @@ __pycache__/
 *.ipynb
 wiki-news-300d-1M.vec
 wiki-news-300d-1M.vec.zip
+.DS_Store
 
+dev
 venv
 
 data

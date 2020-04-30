@@ -68,15 +68,15 @@ def plot_clusters(dfc, dfn, streets=False, colorScores=False, hoverCirclesColor=
         dmp = dfn[dfn['cluster']==i]
         dmc = dfc[dfc['cluster']==i]
         if len(dmp) > 0:
-            score  = [list(dmc['kws_score'])[0]]
+            score  = [list(zip(dmc['kws_score'],dmc['kws_score_airbnb']))[0]]
             nlist  = [list(dmp['cluster #listings'])[0]]
             cprice = [list(dmp['cluster av. price'])[0]]
             if len(dmp)>0:
-                n1data = [str(dmp.iloc[0,2])+' '+str(dmp.iloc[0,1])+' ('+str(dmp.iloc[0,5])+')']
+                n1data = [f'{dmp.iloc[0,2]} {dmp.iloc[0,1]} ({dmp.iloc[0,5]})']
             if len(dmp)>1:
-                n2data = [str(dmp.iloc[1,2])+' '+str(dmp.iloc[1,1])+' ('+str(dmp.iloc[1,5])+')']
+                n2data = [f'{dmp.iloc[1,2]} {dmp.iloc[1,1]} ({dmp.iloc[1,5]})']
             if len(dmp)>2:
-                n3data = [str(dmp.iloc[2,2])+' '+str(dmp.iloc[2,1])+' ('+str(dmp.iloc[2,5])+')']
+                n3data = [f'{dmp.iloc[2,2]} {dmp.iloc[2,1]} ({dmp.iloc[2,5]})']
 
         srcP = ColumnDataSource( dict(x=list(verts_x),y=list(verts_y)) )
         p.patch(x='x',y='y', fill_color=color, fill_alpha=fill_alpha, line_color=None, source=srcP)
