@@ -49,7 +49,7 @@ def plot_clusters(dfc, dfn, streets=False, colorScores=False, hoverCirclesColor=
 
 
     colorIds = list(np.round(np.linspace(0, len(colorList) - 1, max(dfc.index)+1)).astype(int))
-    for i in list(dfc['cluster']):
+    for i in dfc.index:
         verts_x = dfc.loc[i,'verts_x']
         verts_y = dfc.loc[i,'verts_y']
         if colorScores:
@@ -60,10 +60,10 @@ def plot_clusters(dfc, dfn, streets=False, colorScores=False, hoverCirclesColor=
             fill_alpha = 0.4
 
         score,nlist,cprice,n1data,n2data,n3data = ['-'],['-'],['-'],['-'],['-'],['-']
-        dmp = dfn[dfn['cluster']==i]
-        dmc = dfc[dfc['cluster']==i]
+        dmp = dfn[dfn['cluster']==dfc.loc[i,'cluster']]
+        dmc = dfc[dfc['cluster']==dfc.loc[i,'cluster']]
         if len(dmp) > 0:
-            score  = [list(zip(dmc['kws_score'],dmc['kws_score_airbnb']))[0]]
+            score  = [list(dmc['kws_score'])[0]]
             nlist  = [list(dmp['cluster #listings'])[0]]
             cprice = [list(dmp['cluster av. price'])[0]]
             if len(dmp)>0:

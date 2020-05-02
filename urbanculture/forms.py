@@ -8,14 +8,7 @@ from wtforms import StringField, SelectField
 from wtforms.validators import InputRequired, AnyOf
 import ipinfo
 
-exclude = ['antwerp','asheville','barossa-valley','barwon-south-west-vic',
-           'beijing','belize','bergamo','bristol','broward-county',
-           'cambridge','clark-county-nv','columbus','denver','euskadi','ghent',
-           'new-brunswick','northern-rivers','ottawa','pacific-grove','portland',
-           'rhode-island','salem-or','tasmania','trentino','twin-cities-msa','vaud']
-
-df_url = pd.read_csv('urbanculture/models/allCitiesData.csv.gz', compression='gzip')
-df_url = df_url[~df_url.city.isin(exclude)]
+df_url = pd.read_csv('urbanculture/citydata/cities_names_urls.csv')
 cities_alias = ['Select a city'] + list(df_url.city)
 cities_names = ['Select a city'] + list(df_url.city_clean)
 cities = list(zip(cities_alias,cities_names))
