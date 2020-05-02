@@ -20,6 +20,7 @@ bokeh = "*"
 gunicorn = "*"
 psycopg2 = "*"
 ipinfo = "*"
+gensim = "*"
 
 [requires]
 python_version = "3.8"
