@@ -63,7 +63,7 @@ def plot_clusters(dfc, dfn, streets=False, colorScores=False, hoverCirclesColor=
         dmp = dfn[dfn['cluster']==dfc.loc[i,'cluster']]
         dmc = dfc[dfc['cluster']==dfc.loc[i,'cluster']]
         if len(dmp) > 0:
-            score  = [list(dmc['kws_score'])[0]]
+            score  = [list(dmc['kws_score_norm'])[0]]
             nlist  = [list(dmp['cluster #listings'])[0]]
             cprice = [list(dmp['cluster av. price'])[0]]
             if len(dmp)>0:
