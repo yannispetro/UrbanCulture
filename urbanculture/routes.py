@@ -24,8 +24,8 @@ def index():
         db.session.commit()
 
         city     = query_info_dict['city']
-        keywords = query_info_dict['keywords']
-        p = recom.get_plot_handle(city, keywords.replace(',','').split() )
+        keywords = query_info_dict['keywords'].lower().split(',')
+        p = recom.get_plot_handle(city, keywords )
 
         script, div = components(p)
         return render_template("graph.html", script=script, div=div)
