@@ -19,8 +19,7 @@ class CityForm(Form):
                            coerce=str,
                            choices=cities,
                            )
-    keywords_form = StringField(
-                           'Keywords',
+    keywords_form = StringField('Keywords',
                            validators=[InputRequired()],
                            render_kw={"placeholder": "Type a few keywords ..."}
                            )

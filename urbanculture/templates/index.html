@@ -51,15 +51,17 @@ Urban Culture
   </nav>
 
   <!-- Header -->
-  <header class="masthead">
+  <header class="masthead" >
     <div class="container d-flex h-100 align-items-center">
       <div class="mx-auto text-center">
         <h1>Discover new neighborhoods</h1>
         <form method="POST" id="child" action="/">
           <dl>
-            {{ form.csrf_token }}
-            {{ wtf.form_field(form.city_form) }}
-            {{ wtf.form_field(form.keywords_form) }}
+            <div class="form_container" style="font-size: 0.0em; ">
+              {{ form.csrf_token }}
+              {{ wtf.form_field(form.city_form) }}
+              {{ wtf.form_field(form.keywords_form) }}
+            </div>
             <input class="btn btn-primary" type="submit" value="Show neighborhoods">
           </dl>
         </form>
@@ -88,7 +90,7 @@ Urban Culture
       <!-- Featured Project Row -->
       <div class="row align-items-center no-gutters mb-4 mb-lg-5">
         <div class="col-xl-8 col-lg-7">
-          <img class="img-fluid mb-3 mb-lg-0" src="{{ url_for('static', filename='img/city.gif') }}" alt="">
+          <img class="img-fluid mb-3 mb-lg-0" src="{{ url_for('static', filename='img/joy-while-traveling.jpg') }}" alt="">
         </div>
         <div class="col-xl-4 col-lg-5">
           <div class="featured-text text-center text-lg-left">
@@ -101,7 +103,7 @@ Urban Culture
       <!-- Project One Row -->
       <div class="row justify-content-center no-gutters mb-5 mb-lg-0">
         <div class="col-lg-6">
-          <img class="img-fluid" src="../static/img/demo-image-01.jpg" alt="">
+          <img class="img-fluid" src="../static/img/hotel.jg" alt="">
         </div>
         <div class="col-lg-6">
           <div class="bg-black text-center h-100 project">
@@ -119,7 +121,7 @@ Urban Culture
       <!-- Project Two Row -->
       <div class="row justify-content-center no-gutters">
         <div class="col-lg-6">
-          <img class="img-fluid" src="../static/img/demo-image-02.jpg" alt="">
+          <img class="img-fluid" src="../static/img/dinning.jpg" alt="">
         </div>
         <div class="col-lg-6 order-lg-first">
           <div class="bg-black text-center h-100 project">
