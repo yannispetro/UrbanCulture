@@ -13,7 +13,7 @@ class SearchQuery(db.Model):
     date       = db.Column(db.String(20))
     ip_address = db.Column(db.String(20))
     city       = db.Column(db.String(50))
-    keywords   = db.Column(db.String(200))
+    keywords   = db.Column(db.Text)
 
 class EmailAddress(db.Model):
     id         = db.Column(db.Integer, primary_key=True)

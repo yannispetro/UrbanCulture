@@ -23,8 +23,8 @@ def index():
         db.session.add(searchquery)
         db.session.commit()
 
-        city     = query_info_dict['city']
-        keywords = query_info_dict['keywords'].lower().split(',')
+        city     = searchquery.city
+        keywords = searchquery.keywords.lower().split(',')
         p = recom.get_plot_handle(city, keywords )
 
         script, div = components(p)
@@ -33,6 +33,7 @@ def index():
         emailaddress = get_email(emailform, ip_address)
         db.session.add(emailaddress)
         db.session.commit()
+        emailform.email_form.data = ""
 
     return render_template('index.html', form=form, emailform=emailform)
 
