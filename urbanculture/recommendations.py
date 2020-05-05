@@ -39,7 +39,7 @@ def keywords_score(kws, dfc, city):
         return (score/np.log(sum(d.values())/(1+count)))/nlistings
 
     kws = list(set([kw for kw in kws]))
-    most_similar = dict(model.wv.most_similar(positive=kws, topn=20))
+    most_similar = dict(model.wv.most_similar(positive=kws, topn=30))
 
     dfc['kws_score_airbnb'] = dfc.apply(calculate_similarities, axis=1)
 

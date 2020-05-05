@@ -28,5 +28,9 @@ def index():
         p = recom.get_plot_handle(city, keywords )
 
         script, div = components(p)
-        return render_template("graph.html", script=script, div=div)
+        return render_template('graph.html', script=script, div=div)
     return render_template('index.html', form=form)
+
+@main.route('/about')
+def about():
+    return render_template('about.html')
