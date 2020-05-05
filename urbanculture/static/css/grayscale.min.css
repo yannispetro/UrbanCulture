@@ -101,7 +101,7 @@
    font-family:'Varela Round';
    font-size:3.0rem;
    line-height:3.5rem;
-   letter-spacing:.4rem;
+   letter-spacing:0.0rem;
    font-weight: bold;
    /* color: #FBFFF4; */
    background:-webkit-linear-gradient(rgba(255,255,255,1.0),rgba(255,255,255,1.0));
@@ -139,6 +139,7 @@
  .form_container {
    position:relative;
    width:100%;
+   line-height:4.0rem;
    height:auto;
  }
 

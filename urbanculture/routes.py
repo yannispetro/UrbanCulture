@@ -2,8 +2,8 @@ from flask import Blueprint, render_template
 from bokeh.embed import components
 
 from .extensions import db
-from .models import SearchQuery
-from .forms import CityForm, get_query_info
+from .forms import CityForm, EmailForm
+from .formdata import get_ip_info, get_query, get_email
 import urbanculture.recommendations as recom
 
 main = Blueprint('main', __name__)
@@ -11,15 +11,15 @@ main = Blueprint('main', __name__)
 @main.route('/', methods= ['GET', 'POST'])
 def index():
     form = CityForm()
+    emailform = EmailForm()
+
+    ip_info = get_ip_info()
+    db.session.add(ip_info)
+    db.session.commit()
+    ip_address = ip_info.ip_address
+
     if form.validate_on_submit():
-        query_info_dict = get_query_info(form)
-        searchquery = SearchQuery(date=query_info_dict['date'],
-                                  ip_address=query_info_dict['ip_address'],
-                                  ip_city=query_info_dict['ip_city'],
-                                  ip_region=query_info_dict['ip_region'],
-                                  ip_country=query_info_dict['ip_country'],
-                                  city=query_info_dict['city'],
-                                  keywords=query_info_dict['keywords'])
+        searchquery = get_query(form, ip_address)
         db.session.add(searchquery)
         db.session.commit()
 
@@ -29,7 +29,12 @@ def index():
 
         script, div = components(p)
         return render_template('graph.html', script=script, div=div)
-    return render_template('index.html', form=form)
+    if emailform.validate_on_submit():
+        emailaddress = get_email(emailform, ip_address)
+        db.session.add(emailaddress)
+        db.session.commit()
+
+    return render_template('index.html', form=form, emailform=emailform)
 
 @main.route('/about')
 def about():

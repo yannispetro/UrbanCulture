@@ -57,12 +57,14 @@ Urban Culture
         <h1>Discover new neighborhoods</h1>
         <form method="POST" id="child" action="/">
           <dl>
-            <div class="form_container" style="font-size: 0.0em; ">
               {{ form.csrf_token }}
-              {{ wtf.form_field(form.city_form) }}
-              {{ wtf.form_field(form.keywords_form) }}
+            <div class="form-group">
+              {{ form.city_form(class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0") }}
             </div>
-            <input class="btn btn-primary" type="submit" value="Show neighborhoods">
+            <div class="form-group">
+              {{ form.keywords_form(class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0") }}
+            </div>
+            <button type="submit" class="btn btn-primary mx-auto">Show neighborhoods</button>
           </dl>
         </form>
       </div>
@@ -74,7 +76,7 @@ Urban Culture
     <div class="container">
       <div class="row">
         <div class="col-lg-8 mx-auto">
-          <h2 class="text-white mb-4">Built with Bootstrap 4</h2>
+          <h2 class="text-white mb-4">NLP with Gensim</h2>
           <p class="text-white-50">Grayscale is a free Bootstrap theme created by Start Bootstrap. It can be yours right now, simply download the template on
             <a href="http://startbootstrap.com/template-overviews/grayscale/">the preview page</a>. The theme is open source, and you can use it for any purpose, personal or commercial.</p>
         </div>
@@ -94,8 +96,8 @@ Urban Culture
         </div>
         <div class="col-xl-4 col-lg-5">
           <div class="featured-text text-center text-lg-left">
-            <h4>Shoreline</h4>
-            <p class="text-black-50 mb-0">Grayscale is open source and MIT licensed. This means you can use it for any project - even commercial projects! Download it, customize it, and publish your website!</p>
+            <h4>Advertising Platform</h4>
+            <p class="text-black-50 mb-0">Hosting ads from airline companies, hotel booking websites, such as Booking.com, Hotels.com, holiday package providers such as Expedia and Trivago.  </p>
           </div>
         </div>
       </div>
@@ -103,13 +105,13 @@ Urban Culture
       <!-- Project One Row -->
       <div class="row justify-content-center no-gutters mb-5 mb-lg-0">
         <div class="col-lg-6">
-          <img class="img-fluid" src="../static/img/hotel.jg" alt="">
+          <img class="img-fluid" src="../static/img/hotel.jpg" alt="">
         </div>
         <div class="col-lg-6">
           <div class="bg-black text-center h-100 project">
             <div class="d-flex h-100">
               <div class="project-text w-100 my-auto text-center text-lg-left">
-                <h4 class="text-white">Misty</h4>
+                <h4 class="text-white">Traveling</h4>
                 <p class="mb-0 text-white-50">An example of where you can put an image of a project, or anything else, along with a description.</p>
                 <hr class="d-none d-lg-block mb-0 ml-0">
               </div>
@@ -127,8 +129,8 @@ Urban Culture
           <div class="bg-black text-center h-100 project">
             <div class="d-flex h-100">
               <div class="project-text w-100 my-auto text-center text-lg-right">
-                <h4 class="text-white">Mountains</h4>
-                <p class="mb-0 text-white-50">Another example of a project with its respective description. These sections work well responsively as well, try this theme on a small screen!</p>
+                <h4 class="text-white">City Guides</h4>
+                <p class="mb-0 text-white-50">Reccomendations for apps like Foursquare, Yelp, Tripadvisor, etc.</p>
                 <hr class="d-none d-lg-block mb-0 mr-0">
               </div>
             </div>
@@ -148,11 +150,11 @@ Urban Culture
           <i class="far fa-paper-plane fa-2x mb-2 text-white"></i>
           <h2 class="text-white mb-5">Subscribe to receive updates!</h2>
 
-          <form class="form-inline d-flex">
-            <input type="email" class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0" id="inputEmail" placeholder="Enter email address...">
+           <form class="form-inline d-flex" method="POST" id="email" action="/">
+              {{ emailform.csrf_token }}
+              {{ emailform.email_form(class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0") }}
             <button type="submit" class="btn btn-primary mx-auto">Subscribe</button>
           </form>
-
         </div>
       </div>
     </div>
