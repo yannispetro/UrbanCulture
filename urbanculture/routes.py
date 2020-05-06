@@ -28,7 +28,9 @@ def index():
         p = recom.get_plot_handle(city, keywords )
 
         script, div = components(p)
-        return render_template('graph.html', script=script, div=div)
+        return render_template('index.html', script=script, div=div, form=form, emailform=emailform,  _anchor='map')
+        # return redirect(url_for('main.index', script=script, div=div))
+        # return render_template('graph.html', script=script, div=div)
     if emailform.validate_on_submit():
         emailaddress = get_email(emailform, ip_address)
         db.session.add(emailaddress)
