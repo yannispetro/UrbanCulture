@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, redirect, url_for
 from bokeh.embed import components
 
 from .extensions import db
@@ -34,9 +34,6 @@ def index():
         db.session.add(emailaddress)
         db.session.commit()
         emailform.email_form.data = ""
+        return redirect(url_for('main.index', _anchor='signup'))
 
     return render_template('index.html', form=form, emailform=emailform)
-
-@main.route('/about')
-def about():
-    return render_template('about.html')

@@ -26,6 +26,7 @@ Urban Culture
   {% endblock %}
 
   {% block content %}
+  <body id='page-top'>
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
     <div class="container">
@@ -37,13 +38,13 @@ Urban Culture
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#about">About</a>
+            <a class="nav-link js-scroll-trigger" href="{{ url_for('main.index', _anchor='about') }}">About</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#projects">Projects</a>
+            <a class="nav-link js-scroll-trigger" href="{{ url_for('main.index', _anchor='solutions') }}">Solutions</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#signup">Contact</a>
+            <a class="nav-link js-scroll-trigger" href="{{ url_for('main.index', _anchor='signup') }}">Contact</a>
           </li>
         </ul>
       </div>
@@ -76,17 +77,21 @@ Urban Culture
     <div class="container">
       <div class="row">
         <div class="col-lg-8 mx-auto">
-          <h2 class="text-white mb-4">NLP with Gensim</h2>
-          <p class="text-white-50">Grayscale is a free Bootstrap theme created by Start Bootstrap. It can be yours right now, simply download the template on
-            <a href="http://startbootstrap.com/template-overviews/grayscale/">the preview page</a>. The theme is open source, and you can use it for any purpose, personal or commercial.</p>
+          <h2 class="text-white mb-4">Explore Urban Landscapes</h2>
+          <p class="p1 text-white-50">Urban Culture is a neighborhood recommendation system that matches geographical areas with your interests.
+            Select one out of the 80 available cities, express your preferences via a few keywords and <a class="js-scroll-trigger" href="#page-top">start exploring</a>!</p>
+            <p class="p2 text-white-50">The system is built using machine learning and natural language processing (NLP) techniques. A fastText word embedding was
+              learned on Airbnb and Yelp data and several scikit-learn tools are utilized for geospatial clustering and semantic similarity estimation.
+              The <a href="https://github.com/yannispetro/UrbanCulture">website</a> is built using Flask and Bootstrap and deployed on Heroku.</p>
+
+              <img src="../static/img/flow.png" class="img-fluid" alt="">
         </div>
       </div>
-      <img src="../static/img/flow.png" class="img-fluid" alt="">
     </div>
   </section>
 
   <!-- Projects Section -->
-  <section id="projects" class="projects-section bg-light">
+  <section id="solutions" class="projects-section bg-light">
     <div class="container">
 
       <!-- Featured Project Row -->
@@ -97,7 +102,7 @@ Urban Culture
         <div class="col-xl-4 col-lg-5">
           <div class="featured-text text-center text-lg-left">
             <h4>Advertising Platform</h4>
-            <p class="text-black-50 mb-0">Hosting ads from airline companies, hotel booking websites, such as Booking.com, Hotels.com, holiday package providers such as Expedia and Trivago.  </p>
+            <p class="text-black-50 mb-0">Hosting ads for hotel and flight booking websites, airlines, holiday package providers or any travel and tourism company.</p>
           </div>
         </div>
       </div>
@@ -112,7 +117,7 @@ Urban Culture
             <div class="d-flex h-100">
               <div class="project-text w-100 my-auto text-center text-lg-left">
                 <h4 class="text-white">Traveling</h4>
-                <p class="mb-0 text-white-50">An example of where you can put an image of a project, or anything else, along with a description.</p>
+                <p class="mb-0 text-white-50">Integrated recommendation system in websites like Booking.com, Hotels.com, Expedia, CheapOair, Skyscanner, Trivago, Travelocity.</p>
                 <hr class="d-none d-lg-block mb-0 ml-0">
               </div>
             </div>
@@ -130,7 +135,7 @@ Urban Culture
             <div class="d-flex h-100">
               <div class="project-text w-100 my-auto text-center text-lg-right">
                 <h4 class="text-white">City Guides</h4>
-                <p class="mb-0 text-white-50">Reccomendations for apps like Foursquare, Yelp, Tripadvisor, etc.</p>
+                <p class="mb-0 text-white-50">Reccomendations for apps like Foursquare, Yelp, Tripadvisor, and Sidewalk.</p>
                 <hr class="d-none d-lg-block mb-0 mr-0">
               </div>
             </div>
@@ -172,7 +177,7 @@ Urban Culture
               <i class="fas fa-map-marked-alt text-primary mb-2"></i>
               <h4 class="text-uppercase m-0">Address</h4>
               <hr class="my-4">
-              <div class="small text-black-50">4923 Market Street, Orlando FL</div>
+              <div class="small text-black-50">Upper West Side, New York</div>
             </div>
           </div>
         </div>
@@ -184,7 +189,7 @@ Urban Culture
               <h4 class="text-uppercase m-0">Email</h4>
               <hr class="my-4">
               <div class="small text-black-50">
-                <a href="#">hello@yourdomain.com</a>
+                <a href="#">urbancultureapp@hotmail.com</a>
               </div>
             </div>
           </div>
@@ -196,20 +201,20 @@ Urban Culture
               <i class="fas fa-mobile-alt text-primary mb-2"></i>
               <h4 class="text-uppercase m-0">Phone</h4>
               <hr class="my-4">
-              <div class="small text-black-50">+1 (555) 902-8832</div>
+              <div class="small text-black-50">+1 (555) URB-CULT</div>
             </div>
           </div>
         </div>
       </div>
 
       <div class="social d-flex justify-content-center">
-        <a href="#" class="mx-2">
-          <i class="fab fa-twitter"></i>
+        <a href="https://www.instagram.com/vexpertravel" class="mx-2">
+          <i class="fab fa-instagram"></i>
         </a>
         <a href="#" class="mx-2">
           <i class="fab fa-facebook-f"></i>
         </a>
-        <a href="#" class="mx-2">
+        <a href="https://github.com/yannispetro/UrbanCulture" class="mx-2">
           <i class="fab fa-github"></i>
         </a>
       </div>
@@ -220,7 +225,7 @@ Urban Culture
   <!-- Footer -->
   <footer class="bg-black small text-center text-white-50">
     <div class="container">
-      Copyright &copy; Your Website 2019
+      Copyright &copy; UrbanCulture 2020
     </div>
   </footer>
 
@@ -234,4 +239,5 @@ Urban Culture
   <!-- Custom scripts for this template -->
   <script src="../static/js/grayscale.min.js"></script>
 
+</body>
 {% endblock %}
