@@ -13,12 +13,12 @@ def index():
     form = CityForm()
     emailform = EmailForm()
 
-    ip_info = get_ip_info()
-    db.session.add(ip_info)
-    db.session.commit()
-    ip_address = ip_info.ip_address
-
     if form.validate_on_submit():
+        ip_info = get_ip_info()
+        db.session.add(ip_info)
+        db.session.commit()
+        ip_address = ip_info.ip_address
+
         searchquery = get_query(form, ip_address)
         db.session.add(searchquery)
         db.session.commit()
