@@ -8,6 +8,7 @@ df_url = pd.read_csv('urbanculture/citydata/cities_names_urls.csv')
 cities_alias = ['Select a city'] + list(df_url.city)
 cities_names = ['Select a city'] + list(df_url.city_clean)
 cities = list(zip(cities_alias,cities_names))
+cities_dict = dict(cities)
 
 class CityForm(FlaskForm):
     city_form     = SelectField('City',

@@ -30,6 +30,11 @@ Urban Culture
   		<script src="https://cdn.bokeh.org/bokeh/release/bokeh-widgets-2.0.1.min.js"></script>
   		<script src="https://cdn.bokeh.org/bokeh/release/bokeh-tables-2.0.1.min.js"></script>
 
+      <script>
+         var obj_load={% if set_tab==1%}"map"{%else%}""{%endif%};
+         window.location.hash=obj_load
+      </script>
+
       {{ script|safe }}
   {{super()}}
   {% endblock %}
@@ -85,12 +90,18 @@ Urban Culture
   </header>
 
   <!-- About Section -->
-  <section id="map" class="about-section text-center">
+  <section id="map" class="about-section">
+    <div class="container text-center">
+      <div class="row">
+        <div class="col-lg-12 mx-auto">
+          <h2 class="text-white mb-4">{{ map_title }}</h2>
+        </div>
+      </div>
+    </div>
     <div class="container">
       <div class="row">
         <div class="col-lg-12 mx-auto">
-          <h2 class="text-white mb-4">Explore Urban Landscapes</h2>
-            {{ div|safe }}
+          {{ div|safe }}
         </div>
       </div>
     </div>

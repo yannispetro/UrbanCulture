@@ -47,7 +47,7 @@ def keywords_score(kws, dfc, city):
     dfc['kws_score'] = dfc['kws_score'] - dfc['kws_score'].min()
     dfc['kws_score_norm'] = dfc['kws_score']/dfc['kws_score'].max()
 
-    dfc['alpha'] = 0.1 + (dfc['kws_score_norm'] - dfc['kws_score_norm'].min())/(dfc['kws_score_norm'].max() - dfc['kws_score_norm'].min())*0.5
+    dfc['alpha'] = 0.05 + (dfc['kws_score_norm'] - dfc['kws_score_norm'].min())/(dfc['kws_score_norm'].max() - dfc['kws_score_norm'].min())*0.7
     dfc['alpha'].fillna(0.1,inplace=True)
 
     return dfc
