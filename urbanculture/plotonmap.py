@@ -40,8 +40,10 @@ def plot_clusters(dfc, dfn, streets=False, colorScores=False, hoverCirclesColor=
                                   map_type="roadmap", zoom=zm, styles=map_style )
 
         api_key = os.environ['GOOGLE_API_KEY']
-        p = gmap(api_key, map_options, sizing_mode="scale_both")
+        p = gmap(api_key, map_options, sizing_mode='scale_both')
         p.add_tools( HoverTool(tooltips=TOOLTIPS) )
+        p.toolbar.active_scroll = p.toolbar.tools[1]
+        p.toolbar_location = None
     else:
         p = figure(background_fill_color = '#FFFFFF',
                    tooltips=TOOLTIPS,
