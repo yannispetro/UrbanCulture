@@ -48,6 +48,6 @@ def index():
         db.session.add(emailaddress)
         db.session.commit()
         emailform.email_form.data = ""
-        return redirect(url_for('main.index', set_tab=0, _anchor='signup'))
+        return redirect(url_for('main.index', _anchor='signup'))
 
     return render_template('index.html', form=form, emailform=emailform)
