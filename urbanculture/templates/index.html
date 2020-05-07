@@ -31,8 +31,7 @@ Urban Culture
   		<script src="https://cdn.bokeh.org/bokeh/release/bokeh-tables-2.0.1.min.js"></script>
 
       <script>
-         var obj_load={% if set_tab==1%}"map"{%else%}""{%endif%};
-         window.location.hash=obj_load
+         {% if set_tab==1%}window.location.hash="map"{%endif%};
       </script>
 
       {{ script|safe }}
