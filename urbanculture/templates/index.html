@@ -54,10 +54,10 @@ Urban Culture
             <a class="nav-link js-scroll-trigger" href="{{ url_for('main.index', _anchor='map') }}">Map</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="{{ url_for('main.index', _anchor='about') }}">About</a>
+            <a class="nav-link js-scroll-trigger" href="{{ url_for('main.index', _anchor='solutions') }}">Solutions</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="{{ url_for('main.index', _anchor='solutions') }}">Solutions</a>
+            <a class="nav-link js-scroll-trigger" href="{{ url_for('main.index', _anchor='about') }}">About</a>
           </li>
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="{{ url_for('main.index', _anchor='signup') }}">Contact</a>
@@ -101,24 +101,6 @@ Urban Culture
       <div class="row">
         <div class="col-lg-12 mx-auto">
           {{ div|safe }}
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- About Section -->
-  <section id="about" class="about-section text-center">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 mx-auto">
-          <h2 class="text-white mb-4">Explore Urban Landscapes</h2>
-          <p class="p1 text-white-50">Urban Culture is a neighborhood recommendation system that matches geographical areas with your interests.
-            Select one out of the 80 available cities, express your preferences via a few keywords and <a class="js-scroll-trigger" href="#page-top">start exploring</a>!</p>
-            <p class="p2 text-white-50">The system is built using machine learning and natural language processing (NLP) techniques. A fastText word embedding was
-              learned on Airbnb and Yelp data and several scikit-learn tools are utilized for geospatial clustering and semantic similarity estimation.
-              The <a href="https://github.com/yannispetro/UrbanCulture">website</a> is built using Flask and Bootstrap and deployed on Heroku.</p>
-
-              <img src="../static/img/flow.png" class="img-fluid" alt="">
         </div>
       </div>
     </div>
@@ -177,6 +159,24 @@ Urban Culture
         </div>
       </div>
 
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="about-section text-center">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 mx-auto">
+          <h2 class="text-white mb-4">Explore Urban Landscapes</h2>
+          <p class="p1 text-white-50">Urban Culture is a neighborhood recommendation system that matches geographical areas with your interests.
+            Select one out of the 80 available cities, express your preferences via a few keywords and <a class="js-scroll-trigger" href="#page-top">start exploring</a>!</p>
+            <p class="p2 text-white-50">The system is built using machine learning and natural language processing (NLP) techniques. A fastText word embedding was
+              learned on Airbnb and Yelp data and several scikit-learn tools are utilized for geospatial clustering and semantic similarity estimation.
+              The <a href="https://github.com/yannispetro/UrbanCulture">website</a> is built using Flask and Bootstrap and deployed on Heroku.</p>
+
+              <img src="../static/img/flow.png" class="img-fluid" alt="">
+        </div>
+      </div>
     </div>
   </section>
 
